@@ -16,6 +16,14 @@ spec:
       containers:
       - name: mongodb
         image: mongo:3.6.5-jessie
+        volumeMounts:
+          - name: mongo-persistant-storage
+            mountPath: /data/db
+      volumes:
+        - name: mongo-persistant-storage
+          hostPath: 
+            path: /mnt/mongo/volumedata
+            type: DirectoryOrCreate      
 ---
 kind: Service
 apiVersion: v1
